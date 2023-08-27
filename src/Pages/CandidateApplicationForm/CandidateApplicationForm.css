@@ -1,0 +1,146 @@
+.wcs-mb-3 {
+  margin-bottom: 15px;
+}
+
+.wcs-relative {
+  position: relative;
+}
+
+.wcs-opacity-0 {
+  opacity: 0;
+}
+.wcs-full-width {
+  width: 100%;
+}
+.wcs-stroke-current {
+  stroke: currentColor;
+}
+
+#supportCheckbox:checked ~ div span {
+  opacity: 1;
+}
+
+.wcs-main-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+}
+
+.wcs-form-wrapper {
+  margin: 0 auto;
+  max-width: 570px;
+  width: 100%;
+  background: white;
+  padding: 40px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.05);
+}
+
+.wcs-img {
+  margin-bottom: 45px;
+}
+
+.wcs-form-title {
+  margin-bottom: 30px;
+}
+
+.wcs-form-title h2 {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 34px;
+  color: #07074d;
+}
+
+.wcs-form-title p {
+  font-size: 16px;
+  line-height: 24px;
+  color: #536387;
+  margin-top: 12px;
+}
+
+.wcs-input-grid {
+  display: grid;
+  /* gap: 20px; */
+  margin-bottom: 15px;
+}
+
+.wcs-form-input {
+  width: 100%;
+  padding: 13px 22px;
+  border-radius: 5px;
+  border: 1px solid #dde3ec;
+  background: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  color: #536387;
+  outline: none;
+  resize: none;
+}
+
+.wcs-form-input:focus {
+  border-color: #6a64f1;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.wcs-form-label {
+  color: #536387;
+  font-size: 14px;
+  line-height: 24px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.wcs-checkbox-label {
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+  font-size: 16px;
+  line-height: 24px;
+  color: #536387;
+}
+
+.wcs-checkbox-label a {
+  margin-left: 5px;
+  color: #6a64f1;
+}
+
+.wcs-input-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.wcs-checkbox-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 16px;
+  margin-top: 2px;
+  border: 0.7px solid #dde3ec;
+  border-radius: 3px;
+}
+
+.wcs-btn {
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 14px 25px;
+  border: none;
+  font-weight: 600;
+  background-color: var(--main-color);
+  color: var(--heading-color);
+  cursor: pointer;
+  margin-top: 25px;
+}
+
+.wcs-btn:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
