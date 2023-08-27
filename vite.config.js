@@ -5,6 +5,7 @@ import alias from "./utlis/alias";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: "/",
   resolve: {
     alias: alias,
   },
