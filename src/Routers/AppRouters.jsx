@@ -5,14 +5,13 @@ import { Home } from "@pages/Home/Home";
 
 const AppRoutes = () => {
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter
+      basename={import.meta.env.DEV ? "/" : "/candidate-application-form/"}
+    >
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Suspense fallback={<AppLoader />}> */}
-        <Route
-          path="/candidate-application-form"
-          element={<CandidateApplicationForm />}
-        />
+        <Route path="/form" element={<CandidateApplicationForm />} />
         {/* </Suspense> */}
       </Routes>
     </BrowserRouter>
