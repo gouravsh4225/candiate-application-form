@@ -14,10 +14,15 @@ import alias from "./utlis/alias";
 export default defineConfig(({ command }) => {
   const config = {
     plugins: [react()],
-    base: "/candidate-application-form/",
+    base: "/",
     resolve: {
       alias,
     },
   };
+
+  if (command !== "serve") {
+    config.base = "/candidate-application-form/";
+  }
+
   return config;
 });
