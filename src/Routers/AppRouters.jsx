@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "../Hoc/Layout/Layout";
 import { routes } from "./routes";
 import { Fragment } from "react";
-console.log(routes);
 
 const AppRoutes = () => {
   return (
