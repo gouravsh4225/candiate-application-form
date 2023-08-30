@@ -5,9 +5,7 @@ import { Fragment } from "react";
 
 const AppRoutes = () => {
   return (
-    <BrowserRouter
-      basename={import.meta.env.DEV ? "/" : "/candidate-application-form/"}
-    >
+    <BrowserRouter basename="/candidate-application-form/">
       <Routes>
         {routes.map((route) => (
           <Route

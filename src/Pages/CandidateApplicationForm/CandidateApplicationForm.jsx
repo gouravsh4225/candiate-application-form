@@ -4,14 +4,15 @@ import { addCandidateForm } from "../../Api/CandidateFormApi/CandidateFormApi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Notification } from "../../components/Notification/Notification";
 
+const CandidateFormInitialValue = {
+  firstName: "",
+  lastName: "",
+  emailAddress: "",
+  phoneNumber: "",
+  collegeId: "",
+};
 const CandidateApplicationForm = () => {
-  const [candidateForm, setCandidateForm] = useState({
-    firstName: "",
-    lastName: "",
-    emailAddress: "",
-    phoneNumber: "",
-    collegeId: "",
-  });
+  const [candidateForm, setCandidateForm] = useState(CandidateFormInitialValue);
   const routerNavigate = useNavigate();
   const routerParams = useLocation();
 
@@ -31,6 +32,7 @@ const CandidateApplicationForm = () => {
             pathname: "/form",
             search: "?submited=true",
           });
+          setCandidateForm(CandidateFormInitialValue);
         }
       })
       .catch((error) => {

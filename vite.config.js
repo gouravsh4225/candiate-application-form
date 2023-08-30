@@ -11,18 +11,26 @@ import alias from "./utlis/alias";
 //   },
 // });
 
+// https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
   const config = {
     plugins: [react()],
-    base: "/",
-    resolve: {
-      alias,
-    },
+    base: "/candidate-application-form/",
   };
-
-  if (command !== "serve") {
-    config.base = "/candidate-application-form/";
-  }
-
   return config;
 });
+// export default defineConfig(({ command }) => {
+//   const config = {
+//     plugins: [react()],
+//     base: "/",
+//     resolve: {
+//       alias,
+//     },
+//   };
+
+//   if (command !== "serve") {
+//     config.base = "/candidate-application-form/";
+//   }
+
+//   return config;
+// });
