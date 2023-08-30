@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import "./CandidateApplicationForm.css";
 import { addCandidateForm } from "../../Api/CandidateFormApi/CandidateFormApi";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Notification } from "../../Components/Notification/Notification";
+import { Notification } from "../../components/Notification/Notification";
 
 const CandidateApplicationForm = () => {
   const [candidateForm, setCandidateForm] = useState({
