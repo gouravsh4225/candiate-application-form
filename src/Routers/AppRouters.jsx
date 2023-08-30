@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AppLoader } from "@components/AppLoader/AppLoader";
-import { CandidateApplicationForm } from "@pages/CandidateApplicationForm/CandidateApplicationForm";
-import { Home } from "@pages/Home/Home";
+import { Layout } from "../Hoc/Layout/Layout";
+import { routes } from "./routes";
+import { Fragment } from "react";
+console.log(routes);
 
 const AppRoutes = () => {
   return (
@@ -9,10 +10,19 @@ const AppRoutes = () => {
       basename={import.meta.env.DEV ? "/" : "/candidate-application-form/"}
     >
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Suspense fallback={<AppLoader />}> */}
-        <Route path="/form" element={<CandidateApplicationForm />} />
-        {/* </Suspense> */}
+        {routes.map((route) => (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={
+              route.wrapperWithLayout ? (
+                <Layout>{route.component}</Layout>
+              ) : (
+                <Fragment>{route.component}</Fragment>
+              )
+            }
+          />
+        ))}
       </Routes>
     </BrowserRouter>
   );
