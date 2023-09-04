@@ -3,6 +3,8 @@ import "./CandidateApplicationForm.css";
 import { addCandidateForm } from "../../Api/CandidateFormApi/CandidateFormApi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Notification } from "../../components/Notification/Notification";
+import { Spinner } from "react-bootstrap";
+import { SpinnerLoader } from "../../components/Spinner/Spinner";
 
 const CandidateFormInitialValue = {
   firstName: "",
@@ -13,6 +15,8 @@ const CandidateFormInitialValue = {
 };
 const CandidateApplicationForm = () => {
   const [candidateForm, setCandidateForm] = useState(CandidateFormInitialValue);
+  const [formErorrs, setFormErrors] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const routerNavigate = useNavigate();
   const routerParams = useLocation();
 
@@ -22,22 +26,69 @@ const CandidateApplicationForm = () => {
       [event.target.name]: event.target.value,
     });
   };
+
+  const checkIsFormValidate = () => {
+    let invalidForm = {};
+    for (const key in candidateForm) {
+      if (!candidateForm[key]) {
+        invalidForm[key] = candidateForm[key];
+      }
+    }
+    return invalidForm;
+  };
   const onSubmitCandidateForm = (event) => {
     event.preventDefault();
-    addCandidateForm(candidateForm)
-      .then((res) => {
-        console.log("res--> in component", res);
-        if (res.status === 200) {
-          routerNavigate({
-            pathname: "/form",
-            search: "?submited=true",
-          });
-          setCandidateForm(CandidateFormInitialValue);
-        }
-      })
-      .catch((error) => {
-        console.log("error in fomr", error);
-      });
+    const isFormValid = checkIsFormValidate();
+    if (Object.keys(isFormValid).length > 0) {
+      setFormErrors("Please check form again. There is something missing..");
+      return;
+    } else {
+      if (formErorrs.length) {
+        setFormErrors("");
+      }
+      setIsLoading(true);
+      addCandidateForm(candidateForm)
+        .then((res) => {
+          const { data, status } = res;
+          setIsLoading(false);
+          if (status === 200) {
+            routerNavigate({
+              pathname: "/form",
+              search: "?submited=true",
+            });
+            setCandidateForm(CandidateFormInitialValue);
+          }
+          if (data.errors || data.error) {
+            let errorMessage = "";
+            if (Array.isArray(data.errors)) {
+              data.errors.map((errorItem) => {
+                if (errorItem.msg) {
+                  errorMessage = errorMessage.length
+                    ? `${errorMessage},${errorItem.msg}`
+                    : `${errorItem.msg}`;
+                }
+              });
+              setFormErrors(errorMessage);
+              return;
+            }
+            if (Object.keys(data.error).length) {
+              for (const key in data.error) {
+                if (data.error[key]) {
+                  errorMessage = errorMessage.length
+                    ? `${errorMessage},${data.error[key]}`
+                    : `${data.error[key]}`;
+                }
+              }
+              setFormErrors(errorMessage);
+              return;
+            }
+          }
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          console.log("error in fomr", error);
+        });
+    }
   };
 
   return (
@@ -133,8 +184,13 @@ const CandidateApplicationForm = () => {
                   />
                 </div>
               </div>
-              <button className="wcs-btn wcs-full-width" type="submit">
-                Submit
+              <div className="text-danger text-center">{formErorrs}</div>
+              <button
+                className="wcs-btn wcs-full-width"
+                type="submit"
+                disabled={isLoading}
+              >
+                {isLoading ? <SpinnerLoader /> : <>Submit</>}
               </button>
             </form>
           </div>

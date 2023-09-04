@@ -1,9 +1,10 @@
 import { Home } from "../Pages/Home/Home";
 import { CandidateApplicationForm } from "../Pages/CandidateApplicationForm/CandidateApplicationForm";
+import { Navigate } from "react-router-dom";
 const routes = [
   {
     path: "/",
-    component: <Home />,
+    component: <Navigate to="/form" replace />,
     redirectTo: "/form",
     wrapperWithLayout: true,
   },
@@ -13,7 +14,5 @@ const routes = [
     wrapperWithLayout: true,
   },
 ];
-
-console.log(routes);
 
 export { routes };
